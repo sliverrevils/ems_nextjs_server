@@ -18,6 +18,9 @@ export async function GET() {
 export async function POST(req: Request) {
     const { deviseId, initDate } = (await req.json()) as IUser & { status: boolean };
     console.log(`➡️ DEVISE ID : ${deviseId}`);
+    if (!deviseId) {
+        return;
+    }
     await connectDB();
 
     // const isFind = await Device.find({ deviseId });

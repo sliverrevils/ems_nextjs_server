@@ -29,11 +29,11 @@ const DevicesPage = () => {
 
     return (
         <div className="p-4">
-            <button onClick={() => getAllDevices()}>GET ALL</button>
+            {/* <button onClick={() => getAllDevices()}>GET ALL</button> */}
             <h1 className="text-2xl font-bold mb-4">Список устройств</h1>
-            <button onClick={() => {}} className="bg-blue-500 text-white px-4 py-2 rounded mb-4">
+            {/* <button onClick={() => {}} className="bg-blue-500 text-white px-4 py-2 rounded mb-4">
                 Сортировать по дате инициализации ({sortOrder === "asc" ? "по возрастанию" : "по убыванию"})
-            </button>
+            </button> */}
             <ul className="space-y-2">
                 {Array.isArray(devices) &&
                     devices!.map((device) => (
