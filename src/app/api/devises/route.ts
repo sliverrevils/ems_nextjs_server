@@ -19,14 +19,18 @@ export async function POST(req: Request) {
     const { deviseId, initDate } = (await req.json()) as IUser & { status: boolean };
     await connectDB();
 
-    const newDevice = new Device({
-        deviseId,
-        initDate,
-    });
+    // const isFind = await Device.find({ deviseId });
+
+    // const newDevice = new Device({
+    //     deviseId,
+    //     initDate,
+    // });
 
     try {
-        const saved = await newDevice.save();
-        return Response.json({ saved, status: true });
+        // const saved = await newDevice.save();
+        //return Response.json({ saved, status: true });
+        const result = await Device.findOneAndUpdate({ deviseId: deviseId }, { $setOnInsert: { deviseId: deviseId, initDate: Date.now() } }, { upsert: true, new: true });
+        return Response.json({ result, status: true });
     } catch (error) {
         return Response.json({ status: true });
     }
