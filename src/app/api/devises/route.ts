@@ -15,28 +15,17 @@ export async function GET() {
     return Response.json({ resDB });
 }
 
+//!POST CREATE {deviseId}
 export async function POST(req: Request) {
-    const { deviseId, initDate } = (await req.json()) as IUser & { status: boolean };
+    const { deviseId } = (await req.json()) as IUser & { status: boolean };
     console.log(`➡️ DEVISE ID : ${deviseId}`);
     if (!deviseId) {
         return;
     }
     await connectDB();
 
-    // const isFind = await Device.find({ deviseId });
-
-    // const newDevice = new Device({
-    //     deviseId,
-    //     initDate,
-    // });
-
     try {
-        // const saved = await newDevice.save();
-        //return Response.json({ saved, status: true });
-
-        // const result = await Device.findOneAndUpdate({ deviseId: deviseId }, { $setOnInsert: { deviseId: deviseId, initDate: Date.now() } }, { upsert: true, new: true });
-
-        let devise = await Device.findOne({ deviseId: deviseId });
+        let devise = await Device.findOne({ deviseId });
         console.log(`❗ DEVISE FIND : ${devise}`);
         if (!devise) {
             devise = new Device({ deviseId: deviseId, initDate: Date.now() });
