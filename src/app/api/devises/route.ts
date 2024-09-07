@@ -15,13 +15,12 @@ export async function GET() {
     return Response.json({ resDB });
 }
 
-//!POST CREATE {deviseId}
 export async function POST(req: Request) {
-    const { deviseId } = (await req.json()) as IUser & { status: boolean };
+    const { deviseId, initDate } = (await req.json()) as IUser & { status: boolean };
     console.log(`➡️ DEVISE ID : ${deviseId}`);
-    // if (!deviseId) {
-    //     return;
-    // }
+    if (!deviseId) {
+        return;
+    }
     await connectDB();
 
     try {
