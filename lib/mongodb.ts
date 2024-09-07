@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MONGODB_URI_SERVER } from "../axios/clientAxios";
+import { MONGODB_URI, MONGODB_URI_SERVER } from "../axios/clientAxios";
 
 // const connectDB = async () => {
 //     if (mongoose.connection.readyState >= 1) {
@@ -20,9 +20,9 @@ import { MONGODB_URI_SERVER } from "../axios/clientAxios";
 
 // export default connectDB;
 
-if (!MONGODB_URI_SERVER) {
-    throw new Error("Please define the MONGODB_URI environment variable inside .env");
-}
+// if (!MONGODB_URI) {
+//    // throw new Error("Please define the MONGODB_URI environment variable inside .env");
+// }
 
 let cached = global.mongoose;
 
@@ -40,7 +40,7 @@ async function connectDB() {
             bufferCommands: false,
         };
 
-        cached.promise = mongoose.connect(MONGODB_URI_SERVER, opts).then((mongoose) => {
+        cached.promise = mongoose.connect(MONGODB_URI, opts).then((mongoose) => {
             return mongoose;
         });
     }

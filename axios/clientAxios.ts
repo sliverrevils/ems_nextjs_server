@@ -1,6 +1,7 @@
 import axios from "axios";
 
 //export const MONGODB_URI = "http://localhost:3007/api/";
+export const MONGODB_URI = process.env.MONGODB_URI as string;
 export const MONGODB_URI_SERVER = (process.env.NODE_ENV == "production" ? "" : process.env.MONGO_SERVER_DEV) as string;
 // + "/api/";
 //console.log({ "AXIOS ✅": MONGODB_URI });
