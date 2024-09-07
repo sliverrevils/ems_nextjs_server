@@ -25,7 +25,7 @@ export async function POST(req: Request) {
     await connectDB();
 
     try {
-        let devise = await Device.findOne({ deviseId });
+        let devise = await Device.findOne({ deviseId: deviseId });
         console.log(`❗ DEVISE FIND : ${devise}`);
         if (!devise) {
             devise = new Device({ deviseId: deviseId, initDate: Date.now() });
