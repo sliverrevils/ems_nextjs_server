@@ -19,9 +19,9 @@ export async function GET() {
 export async function POST(req: Request) {
     const { deviseId } = (await req.json()) as IUser & { status: boolean };
     console.log(`➡️ DEVISE ID : ${deviseId}`);
-    if (!deviseId) {
-        return;
-    }
+    // if (!deviseId) {
+    //     return;
+    // }
     await connectDB();
 
     try {
