@@ -17,6 +17,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
     const { deviseId, initDate } = (await req.json()) as IUser & { status: boolean };
+    console.log(`➡️ DEVISE ID : ${deviseId}`);
     await connectDB();
 
     // const isFind = await Device.find({ deviseId });
@@ -33,6 +34,7 @@ export async function POST(req: Request) {
         // const result = await Device.findOneAndUpdate({ deviseId: deviseId }, { $setOnInsert: { deviseId: deviseId, initDate: Date.now() } }, { upsert: true, new: true });
 
         let devise = await Device.findOne({ deviseId: deviseId });
+        console.log(`❗ DEVISE FIND : ${devise}`);
         if (!devise) {
             devise = new Device({ deviseId: deviseId, initDate: Date.now() });
             await devise.save();
