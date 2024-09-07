@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { MONGODB_URI, MONGODB_URI_SERVER } from "../axios/clientAxios";
+import { MONGODB_URI_SERVER } from "../axios/clientAxios";
 
 // const connectDB = async () => {
 //     if (mongoose.connection.readyState >= 1) {
@@ -23,6 +23,7 @@ import { MONGODB_URI, MONGODB_URI_SERVER } from "../axios/clientAxios";
 // if (!MONGODB_URI) {
 //    // throw new Error("Please define the MONGODB_URI environment variable inside .env");
 // }
+export const MONGODB_URI = process.env.MONGODB_URI as string;
 
 let cached = global.mongoose;
 
