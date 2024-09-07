@@ -38,7 +38,8 @@ const DevicesPage = () => {
                 {Array.isArray(devices) &&
                     devices!.map((device) => (
                         <li key={Math.random()} className="flex justify-between items-center p-2 border rounded">
-                            <span>{`ID: ${device.deviseId}, Дата инициализации: ${device.initDate}`}</span>
+                            <span>{`ID: ${device.deviseId}`}</span>
+                            <span>{` Дата инициализации: ${new Date(device.initDate + "").toLocaleDateString()}`}</span>
                             <button onClick={() => deleteDevise(device._id)} className="bg-red-500 text-white px-2 py-1 rounded">
                                 Удалить
                             </button>
