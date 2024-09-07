@@ -24,13 +24,15 @@ export async function POST(req: Request) {
     await connectDB();
 
     try {
-        let devise = await Device.findOne({ deviseId: deviseId });
-        console.log(`❗ DEVISE FIND : ${devise}`);
-        if (!devise) {
-            devise = new Device({ deviseId: deviseId, initDate: Date.now() });
-            await devise.save();
-        }
-        return Response.json({ devise, status: true });
+        // let devise = await Device.findOne({ deviseId: deviseId });
+        // console.log(`❗ DEVISE FIND : ${devise}`);
+        // if (!devise) {
+        //     devise = new Device({ deviseId: deviseId, initDate: Date.now() });
+        //     await devise.save();
+        // }
+
+        const result = await Device.updateOne({ deviseId: deviseId }, { $setOnInsert: { deviseId: deviseId, initDate: Date.now() } }, { upsert: true });
+        return Response.json({ result, status: true });
     } catch (error) {
         return Response.json({ status: true });
     }
